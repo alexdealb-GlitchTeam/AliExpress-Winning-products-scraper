@@ -1,0 +1,22 @@
+{
+  "name": "aliexpress-winning-products-scraper",
+  "version": "1.0.0",
+  "description": "Apify Actor to scrape winning products on AliExpress by category — product sheets, reviews, photos, ratings.",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "start:dev": "APIFY_IS_AT_HOME=0 node src/main.js"
+  },
+  "dependencies": {
+    "apify": "^3.3.3",
+    "crawlee": "^3.9.0",
+    "playwright": "^1.44.0"
+  },
+  "devDependencies": {
+    "@apify/eslint-config": "^0.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
