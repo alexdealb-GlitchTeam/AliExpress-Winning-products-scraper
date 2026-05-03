@@ -30,6 +30,7 @@ const {
   minOrders = 500,      // Produits avec une vraie demande
   minRating = 4.3,      // Minimum 4.3 étoiles
   minStock = 30,        // Minimum 30 unités en stock
+  proxyConfiguration = { useApifyProxy: false },
   country = 'FR',       // France — AliExpress priorise les vendeurs EU/entrepôts EU
   currency = 'EUR',
   proxyConfiguration,
