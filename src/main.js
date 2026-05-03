@@ -156,7 +156,7 @@ for (const categoryUrl of categoryUrls) {
 
 // ─── Playwright Crawler ───────────────────────────────────────────────────────
 const crawler = new PlaywrightCrawler({
-  proxyConfiguration: proxy,
+  ...(proxy ? { proxyConfiguration: proxy } : {}),
   maxConcurrency: 2,
   requestHandlerTimeoutSecs: 120,
   navigationTimeoutSecs: 90,
