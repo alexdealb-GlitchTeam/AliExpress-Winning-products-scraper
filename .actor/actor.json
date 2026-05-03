@@ -2,54 +2,11 @@
   "actorSpecification": 1,
   "name": "aliexpress-winning-products-scraper",
   "title": "AliExpress Winning Products Scraper",
-  "description": "Scrape winning products on AliExpress by category or keyword. Extracts product details, photos, ratings, reviews, pricing, and seller info.",
+  "description": "Scrape winning products on AliExpress by category or keyword.",
   "version": "1.0",
   "buildTag": "latest",
   "environmentVariables": {},
   "dockerfile": "./Dockerfile",
   "readme": "./README.md",
-  "input": "../INPUT_SCHEMA.json",
-  "storages": {
-    "dataset": {
-      "actorSpecification": 1,
-      "title": "AliExpress Products",
-      "description": "Scraped product data from AliExpress",
-      "views": {
-        "overview": {
-          "title": "Products overview",
-          "transformation": {
-            "fields": [
-              "productId",
-              "title",
-              "price",
-              "originalPrice",
-              "discountPercent",
-              "currency",
-              "rating",
-              "reviewCount",
-              "orderCount",
-              "category",
-              "url"
-            ]
-          },
-          "display": {
-            "component": "table",
-            "properties": {
-              "productId": { "label": "Product ID", "format": "text" },
-              "title": { "label": "Title", "format": "text" },
-              "price": { "label": "Price", "format": "number" },
-              "originalPrice": { "label": "Original Price", "format": "number" },
-              "discountPercent": { "label": "Discount %", "format": "number" },
-              "currency": { "label": "Currency", "format": "text" },
-              "rating": { "label": "Rating", "format": "number" },
-              "reviewCount": { "label": "Reviews", "format": "number" },
-              "orderCount": { "label": "Orders", "format": "number" },
-              "category": { "label": "Category", "format": "text" },
-              "url": { "label": "URL", "format": "link" }
-            }
-          }
-        }
-      }
-    }
-  }
+  "input": "../INPUT_SCHEMA.json"
 }
