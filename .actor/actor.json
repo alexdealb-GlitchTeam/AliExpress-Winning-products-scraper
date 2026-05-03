@@ -5,7 +5,7 @@
   "description": "Scrape winning products on AliExpress by category or keyword. Extracts product details, photos, ratings, reviews, pricing, and seller info.",
   "version": "1.0",
   "buildTag": "latest",
-  "environmentVariables": [],
+  "environmentVariables": {},
   "dockerfile": "./Dockerfile",
   "readme": "./README.md",
   "input": "../INPUT_SCHEMA.json",
