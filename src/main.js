@@ -174,7 +174,7 @@ const crawler = new PlaywrightCrawler({
   },
 
   // Page setup: inject stealth patches before navigating
-  async preNavigationHooks: [
+  preNavigationHooks: [
     async ({ page }) => {
       // Remove automation markers
       await page.addInitScript(() => {
