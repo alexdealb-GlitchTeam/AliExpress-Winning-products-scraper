@@ -22,18 +22,17 @@ const input = (await Actor.getInput()) || {};
 const {
   searchQueries = [],
   categoryUrls = [],
-  maxProductsPerQuery = 50,
+  maxProductsPerQuery = 10,        // ← change 50 en 10
   sortBy = 'LAST_SEVEN_DAYS_VOLUME',
-  scrapeReviews = true,
+  scrapeReviews = false,           // ← change true en false
   maxReviewsPerProduct = 20,
   scrapeVariants = true,
-  minOrders = 500,      // Produits avec une vraie demande
-  minRating = 4.3,      // Minimum 4.3 étoiles
-  minStock = 30,        // Minimum 30 unités en stock
-  proxyConfiguration = { useApifyProxy: false },
-  country = 'FR',       // France — AliExpress priorise les vendeurs EU/entrepôts EU
+  minOrders = 500,
+  minRating = 4.3,
+  minStock = 30,
+  country = 'FR',
   currency = 'EUR',
-  proxyConfiguration,
+  proxyConfiguration = { useApifyProxy: false },  // ← change ici
   requestDelay = 1500,
 } = input;
 
