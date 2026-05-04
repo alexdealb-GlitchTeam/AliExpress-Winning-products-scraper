@@ -122,7 +122,14 @@ export async function handleSearchPage({ page, request, crawler, log }) {
       log.debug(`[FILTER] Skipping ${productId} — rating ${rating} < ${minRating}`);
       continue;
     }
-
+// if (minOrders > 0 && productData.orderCount > 0 && productData.orderCount < minOrders) {
+//   log.info(`[FILTER] Skipping...`);
+//   return;
+// }
+// if (minRating > 0 && productData.rating > 0 && productData.rating < minRating) {
+//   log.info(`[FILTER] Skipping...`);
+//   return;
+// }
     seenProductIds.add(productId);
     enqueuedCount++;
 

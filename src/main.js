@@ -27,8 +27,8 @@ const {
   scrapeReviews = false,           // ← change true en false
   maxReviewsPerProduct = 20,
   scrapeVariants = true,
-  minOrders = 500,
-  minRating = 4.3,
+  minOrders = 0,
+  minRating = 0,
   minStock = 30,
   country = 'FR',
   currency = 'EUR',
