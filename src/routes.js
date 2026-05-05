@@ -156,6 +156,52 @@ export async function handleProductPage({ page, request, crawler, log, pushData 
   log.info(`[PRODUCT] Saved: "${productData.title}" avec image HD: ${productData.aliexpress_image}`);
 }
 
-export async function handleReviewsApi({ request, json, log, pushData }) {
-  // Garde ton code de reviews tel quel si tu en as besoin
+export async function handleSearchPage({ page, request, log, pushData }) {
+  const { query, maxProducts, country, currency, requestDelay } = request.userData;
+
+  log.info(`[FAST-MODE] Extraction directe pour : "${query}"`);
+
+  await page.waitForLoadState('networkidle');
+  await sleep(requestDelay || 1000);
+
+  // On extrait tout d'un coup depuis la liste
+  const products = await page.evaluate(() => {
+    const cards = Array.from(document.querySelectorAll('[class*="product-card"], [class*="item-card"], a[href*="/item/"]'));
+    
+    return cards.map((el) => {
+      const link = el.querySelector('a[href*="/item/"]') || (el.tagName === 'A' ? el : null);
+      const titleEl = el.querySelector('[class*="title"], h3');
+      const priceEl = el.querySelector('[class*="price--current"]');
+      const imgEl = el.querySelector('img');
+
+      if (!link || !titleEl) return null;
+
+      return {
+        title: titleEl.textContent?.trim(),
+        url: link.href,
+        price: priceEl?.textContent?.trim(),
+        aliexpress_image: imgEl?.src || imgEl?.getAttribute('lazy-src'),
+      };
+    }).filter(p => p !== null);
+  });
+
+  // On ne prend que les X premiers et on les envoie direct !
+  const selection = products.slice(0, maxProducts);
+  
+  for (const item of selection) {
+    // Nettoyage rapide de l'image
+    if (item.aliexpress_image) {
+       item.aliexpress_image = item.aliexpress_image.split('_.webp')[0].split('.jpg_')[0];
+       if (item.aliexpress_image.startsWith('//')) item.aliexpress_image = 'https:' + item.aliexpress_image;
+    }
+    
+    await pushData({
+      ...item,
+      searchQuery: query,
+      scrapedAt: new Date().toISOString(),
+      fastMode: true
+    });
+  }
+
+  log.info(`✅ ${selection.length} produits envoyés directement !`);
 }
